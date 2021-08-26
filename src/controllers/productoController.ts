@@ -59,8 +59,13 @@ class Producto{
         })
     }
     updateProducto(req: Request, res:Response){
+        const id = Number(req.params.id);
+
+        const newUpdate = productoPersistencia.update(id,req.body);
+
         res.json({
-            msg: "Actualizando los productos"
+            msg: "Actualizando los productos",
+            data: newUpdate
         })
     }
 

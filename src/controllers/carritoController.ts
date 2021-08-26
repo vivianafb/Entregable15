@@ -66,11 +66,7 @@ class Carrito{
             data: newItem
         })
     }
-    updateCarrito(req: Request, res:Response){
-        res.json({
-            msg: "Actualizando el carrito"
-        })
-    }
+    
      deleteCarrito(req: Request, res:Response){
         const id = Number(req.params.id);
         

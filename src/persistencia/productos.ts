@@ -61,9 +61,24 @@ class Producto{
         return newItem;
     }
 
-    // update(id,data){
+    update(id: number,data:addProduct){
+        if(id){
+        productos = productos.filter(aProduct => aProduct.id !== Number(id))
 
-    // }
+        const newUpdate = {
+            id: id,
+            nombre: data.nombre,
+            precio: data.precio,
+            descripcion: data.descripcion,
+            codigo: data.codigo,
+            foto: data.foto,
+            stock: data.stock,
+            timestamp:data.timestamp
+        }
+        productos.push(newUpdate);
+        return newUpdate;
+        }
+    }
 
     delete(id:number){
         productos = productos.filter(aProduct => aProduct.id !== Number(id))

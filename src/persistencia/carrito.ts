@@ -29,12 +29,13 @@ let carrito =[
         }
     },
 ]
+
 interface addCarrito {
     timestamp:any,
     producto: any
 }
 
-interface Carrito {
+interface carrito {
     id: number,
     timestamp:any,
     producto:any
@@ -56,10 +57,6 @@ class Carrito{
         carrito.push(newItem);
         return newItem;
     }
-
-    // update(id,data){
-
-    // }
 
     delete(id:number){
         carrito = carrito.filter(aCarrito => aCarrito.id !== Number(id))
