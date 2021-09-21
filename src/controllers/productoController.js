@@ -1,5 +1,5 @@
-import {NextFunction, Request,Response} from 'express';
-import {productoPersistencia} from '../persistencia/productos'
+ import {productoPersistencia} from '../persistencia/productos';
+ import { productsAPI } from '../apis/productos';
 let productos =[
     {id:1, 
         nombre:"lapiz", 
@@ -21,7 +21,7 @@ let productos =[
 
 class Producto{
 
-    validacion(req:Request, res: Response, next: NextFunction){
+    validacion(req, res, next){
         const {nombre,precio,descripcion,codigo,foto,stock} = req.body;
         if(!nombre || !precio || !descripcion || !codigo || !foto || !stock ||
              typeof nombre !== 'string' || 
@@ -34,34 +34,59 @@ class Producto{
         next();
 
     }
-    getProducto(req: Request, res:Response){
+
+    async checkProductExists(req, res , next) {
         const id = req.params.id;
-        if(id){
-            const producto = productoPersistencia.get(Number(id));
-            console.log(producto);
-            if(!producto)
-                return res.status(404).json({
-                    msg: "Producto no encontrado"
-                })
-                return res.json({
-                    data:producto
-                })
+        const producto = await productsAPI.getProducts(id);
+    
+        if (!producto) {
+          return res.status(404).json({
+            msg: 'producto not found',
+          });
         }
+        next();
+      }
+    async getProducto(req, res){
+        const { id } = req.params;
+        const { nombre, precio } = req.query;
+        if (id) {
+        const result = await productsAPI.getProducts(id);
+        if (!result.length)
+            return res.status(404).json({
+            data: 'objeto no encontrado',
+            });
+
+        return res.json({
+            data: result,
+        });
+        }
+        // const query = {};
+
+        // if (nombre) query.nombre = nombre.toString();
+
+        // if (precio) query.precio = Number(precio);
+
+        // if (Object.keys(query).length) {
+        // return res.json({
+        //     data: await productsAPI.query(query),
+        // });
+        // }
+
         res.json({
-            data: productoPersistencia.get()
-        })
+        data: await productsAPI.getProducts(),
+        });
     }
-    addProducto(req: Request, res:Response){      
-        const newItem = productoPersistencia.add(req.body)
+    async addProducto(req, res){      
+        const newItem = await productsAPI.addProduct(req.body)
         res.json({
             msg: "Productos agregado con exito",
             data: newItem
         })
     }
-    updateProducto(req: Request, res:Response){
+    async updateProducto(req, res){
         const id = Number(req.params.id);
 
-        const newUpdate = productoPersistencia.update(id,req.body);
+        const newUpdate = await productsAPI.updateProduct(id,req.body);
 
         res.json({
             msg: "Actualizando los productos",
@@ -69,17 +94,17 @@ class Producto{
         })
     }
 
-    deleteProducto(req: Request, res:Response){
-        const id = Number(req.params.id);
+    async deleteProducto(req, res){
+        const id = req.params.id;
 
-        const producto = productoPersistencia.get(id);
+        const producto = productsAPI.getProducts(id);
         if(!producto){
             return res.status(400).json({
                 msg: "Producto no encontrado"
             })
         }
 
-        productos = productoPersistencia.delete(id) ;
+        productos = await productsAPI.deleteProduct(id) ;
 
         res.json({
             msg: "Producto eliminado",

@@ -30,25 +30,25 @@ let carrito =[
     },
 ]
 
-interface addCarrito {
-    timestamp:any,
-    producto: any
-}
+// interface addCarrito {
+//     timestamp:any,
+//     producto: any
+// }
 
-interface carrito {
-    id: number,
-    timestamp:any,
-    producto:any
-}
+// interface carrito {
+//     id: number,
+//     timestamp:any,
+//     producto:any
+// }
 class Carrito{
-    get(id: number | null = null){
+    get(id){
         if(id){
             return carrito.filter(aCarrito => aCarrito.id == Number(id))
         }
         return carrito;
     }
 
-    add(data: addCarrito){
+    add(data){
         const newItem = {
             id: carrito.length +1,
             timestamp: data.timestamp,
@@ -58,7 +58,7 @@ class Carrito{
         return newItem;
     }
 
-    delete(id:number){
+    delete(id){
         carrito = carrito.filter(aCarrito => aCarrito.id !== Number(id))
         return carrito;
 

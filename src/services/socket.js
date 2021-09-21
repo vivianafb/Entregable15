@@ -7,19 +7,19 @@ import {
   getRoomUsers,
 } from '../utils/users';
 
-const data:any = {
+const data = {
   username: undefined,
   text: undefined,
 };
 
-export const initWsServer = (server:any) => {
+export const initWsServer = (server) => {
   const io = new Server(server);
 
-  io.on('connection', (socket:any) => {
+  io.on('connection', (socket) => {
     console.log('Nueva Conexion establecida!');
 
     //New User Joined room
-    socket.on('JoinRoom', (msg:any) => {
+    socket.on('JoinRoom', (msg) => {
       addUser(socket.client.id, msg.username, msg.room);
       const user = getCurrentUser(socket.client.id);
       if(user.username != undefined){
@@ -63,7 +63,7 @@ export const initWsServer = (server:any) => {
     });
 
     //Listen for chat messages
-    socket.on('chatMessage', (msg:any) => {
+    socket.on('chatMessage', (msg) => {
       const user = getCurrentUser(socket.client.id);
       data.username = user.username;
       data.text = msg;

@@ -1,8 +1,7 @@
-import { Request,Response,NextFunction } from "express";
 const admin = true;
-const user = false;
+const user = true;
 
-export const checkAdmin = (req:Request,res: Response,next:NextFunction) => {
+export const checkAdmin = (req,res,next) => {
     if(admin)
     next();
     else{
@@ -13,7 +12,7 @@ export const checkAdmin = (req:Request,res: Response,next:NextFunction) => {
         })
     }
 }
-export const checkUsuario = (req:Request,res: Response,next:NextFunction) => {
+export const checkUsuario = (req,res,next) => {
     if(user)
     next();
     else{

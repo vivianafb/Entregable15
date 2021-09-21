@@ -33,7 +33,7 @@ let carrito =[
 
 class Carrito{
 
-    validacion(req:Request, res: Response, next: NextFunction){
+    validacion(req, res, next){
         const {timestamp,producto} = req.body;
         if(!timestamp || !producto )
             return res.status(400).json({
@@ -42,7 +42,7 @@ class Carrito{
         next();
 
     }
-    getCarrito(req: Request, res:Response){
+    getCarrito(req, res){
         const id = req.params.id;
         if(id){
             const producto = carritoPersistencia.get(Number(id));
@@ -59,7 +59,7 @@ class Carrito{
             data: carritoPersistencia.get()
         })
     }
-    addCarrito(req: Request, res:Response){      
+    addCarrito(req, res){      
         const newItem = carritoPersistencia.add(req.body)
         res.json({
             msg: "Carrito agregado con exito",
@@ -67,7 +67,7 @@ class Carrito{
         })
     }
     
-     deleteCarrito(req: Request, res:Response){
+     deleteCarrito(req, res){
         const id = Number(req.params.id);
         
         const producto = carritoPersistencia.get(id)
