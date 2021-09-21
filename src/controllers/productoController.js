@@ -60,17 +60,17 @@ class Producto{
             data: result,
         });
         }
-        // const query = {};
+        const query = {};
 
-        // if (nombre) query.nombre = nombre.toString();
+        if (nombre) query.nombre = nombre.toString();
 
-        // if (precio) query.precio = Number(precio);
+        if (precio) query.precio = Number(precio);
 
-        // if (Object.keys(query).length) {
-        // return res.json({
-        //     data: await productsAPI.query(query),
-        // });
-        // }
+        if (Object.keys(query).length) {
+        return res.json({
+            data: await productsAPI.query(query),
+        });
+        }
 
         res.json({
         data: await productsAPI.getProducts(),

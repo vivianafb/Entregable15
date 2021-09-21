@@ -1,7 +1,7 @@
 import { ProductosMemDAO } from './DAOs/memory';
 import { ProductosFSDAO } from './DAOs/fs';
 import { ProductosAtlasDAO } from './DAOs/mongo';
-
+import { ProductosSQLDAO } from './DAOs/mysql';
 import path from 'path';
 export const TipoPersistencia = {
   Memoria : "MEM",
@@ -28,6 +28,10 @@ export class NoticiasFactoryDAO {
       case TipoPersistencia.LocalMongo:
         console.log('RETORNANDO INSTANCIA CLASE MONGO LOCAL');
         return new ProductosAtlasDAO(true);
+
+      case TipoPersistencia.MYSQL:
+        console.log('RETORNANDO INSTANCIA CLASE MYSQL/MariDB LOCAL');
+        return new ProductosSQLDAO();
 
       default:
         console.log('RETORNANDO INSTANCIA CLASE MEMORIA');

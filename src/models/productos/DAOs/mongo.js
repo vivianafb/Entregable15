@@ -60,7 +60,7 @@ export class ProductosAtlasDAO  {
     if (options.nombre) query.nombre = options.nombre;
 
     if (options.precio) query.precio = options.precio;
-
+ 
     return this.productos.find(query);
   }
 }

@@ -1,7 +1,8 @@
 import { NoticiasFactoryDAO } from '../models/productos/products.factory';
 import { TipoPersistencia } from '../models/productos/products.factory';
 
-const tipo = TipoPersistencia.LocalMongo;
+const tipo = TipoPersistencia.MYSQL;
+const tableName = 'productos';
 
 class prodAPI {
     productos;
@@ -11,23 +12,23 @@ class prodAPI {
   }
 
   async getProducts(id) {
-    if (id) return this.productos.get(id);
+    if (id) return this.productos.get(tableName,id);
 
-    return this.productos.get();
+    return this.productos.get(tableName);
   }
 
   async addProduct(productData) {
-    const newProduct = await this.productos.add(productData);
+    const newProduct = await this.productos.add(tableName,productData);
     return newProduct;
   }
 
   async updateProduct(id, productData) {
-    const updatedProduct = await this.productos.update(id, productData);
+    const updatedProduct = await this.productos.update(tableName,id, productData);
     return updatedProduct;
   }
 
   async deleteProduct(id) {
-    await this.productos.delete(id);
+    await this.productos.delete(tableName,id);
   }
 
   async query(options) {
