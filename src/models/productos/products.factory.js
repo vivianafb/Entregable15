@@ -2,6 +2,7 @@ import { ProductosMemDAO } from './DAOs/memory';
 import { ProductosFSDAO } from './DAOs/fs';
 import { ProductosAtlasDAO } from './DAOs/mongo';
 import { ProductosSQLDAO } from './DAOs/mysql';
+import { ProductosSQLITEDAO } from './DAOs/sqlite';
 import path from 'path';
 export const TipoPersistencia = {
   Memoria : "MEM",
@@ -33,6 +34,10 @@ export class NoticiasFactoryDAO {
         console.log('RETORNANDO INSTANCIA CLASE MYSQL/MariDB LOCAL');
         return new ProductosSQLDAO();
 
+      case TipoPersistencia.SQLITE3:
+        console.log('RETORNANDO INSTANCIA CLASE SQLITE');
+        return new ProductosSQLITEDAO();
+    
       default:
         console.log('RETORNANDO INSTANCIA CLASE MEMORIA');
         return new ProductosMemDAO();

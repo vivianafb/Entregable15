@@ -7,8 +7,6 @@ export class ProductosSQLDAO   {
     console.log(`SETTING ${environment} DB`);
     const options = dbConfig[environment];
     this.connection = knex(options);
-    this.tableName = 'productos';
-
   }
 
   init() { 
