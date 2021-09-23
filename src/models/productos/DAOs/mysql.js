@@ -37,16 +37,16 @@ export class ProductosSQLDAO   {
     return this.connection('productos');
   }
 
-  async add(tableName, data) {
-    return this.connection(tableName).insert(data);
+  async add(data) {
+    return this.connection('productos').insert(data);
   }
 
-  async update(tableName, id, data) {
-    return this.connection(tableName).where('id', id).update(data);
+  async update(id, data) {
+    return this.connection('productos').where('id', id).update(data);
   }
 
-  async delete(tableName, id) {
-    return this.connection(tableName).where('id', id).del();
+  async delete(id) {
+    return this.connection('productos').where('id', id).del();
   }
 }
 
