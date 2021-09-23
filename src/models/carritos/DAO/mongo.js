@@ -3,16 +3,8 @@ import Config from '../../../config/index'
 
 const carritoSchema = new mongoose.Schema({
   id: String,
-  timestamp: Number,
-  producto: {
-      nombre: String,
-      precio: Number,
-      descripcion :String,
-      codigo: Number,
-      foto:String,
-      stock:Number
-  }
-
+  createdAt: Number,
+  producto_id: Number
 })
 export class CarritoAtlasDAO{
     srv;

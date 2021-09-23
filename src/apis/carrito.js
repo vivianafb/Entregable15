@@ -1,7 +1,7 @@
 import { FactoryDAO } from '../models/carritos/carrito.factory';
 import { TipoPersistencia } from '../models/carritos/carrito.factory';
 
-const tipo = TipoPersistencia.FileSystem;
+const tipo = TipoPersistencia.LocalMongo;
 const tableName = 'carrito';
 
 class carAPI {

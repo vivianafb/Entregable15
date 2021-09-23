@@ -1,7 +1,7 @@
 import { NoticiasFactoryDAO } from '../models/productos/products.factory';
 import { TipoPersistencia } from '../models/productos/products.factory';
 
-const tipo = TipoPersistencia.FileSystem;
+const tipo = TipoPersistencia.LocalMongo;
 const tableName = 'productos';
 
 class prodAPI {
