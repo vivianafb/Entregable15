@@ -61,7 +61,7 @@ export class CarritoFSDAO{
     const newItem = {
       id: (this.carrito.length + 1),
       createdAt: data.createdAt,
-      producto_id:data.id 
+      producto_id: data.producto_id
     };
     
 
