@@ -71,20 +71,6 @@ export class CarritoFSDAO{
     return newItem;
   }
 
-  async update(id, newCarritoData) {
-    await this.leer(this.nombreArchivo);
-
-    const index = await this.findIndex(id);
-    const oldCarrito = this.carrito[index];
-
-    const updatedCarrito = { ...oldCarrito, ...newCarritoData };
-    this.carrito.splice(index, 1, updatedCarrito);
-
-    await this.guardar();
-
-    return updatedCarrito;
-  }
-
   async delete(id) {
     await this.leer(this.nombreArchivo);
 

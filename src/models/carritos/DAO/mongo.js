@@ -50,10 +50,10 @@ export class CarritoAtlasDAO{
  
      return newCarrito;
    }
- 
-   async update(id, newCarritoData) {
-     return this.carrito.findByIdAndUpdate(id, newCarritoData);
-   }
+//  async update(id, newCarritoData) {
+//      return this.carrito.findByIdAndUpdate(id, newCarritoData);
+//    }
+   
  
    async delete(id) {
      await this.carrito.findByIdAndDelete(id);

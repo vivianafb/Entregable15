@@ -56,36 +56,27 @@ export class CarritoMemDAO{
   
       const newItem = {
         id: (this.carrito.length + 1),
-        timestamp: data.timestamp,
-        producto: {
-            id:(this.carrito.length + 1),
-            nombre: data.producto.nombre,
-            precio: data.producto.precio,
-            descripcion: data.producto.descripcion,
-            codigo: data.producto.codigo,
-            foto: data.producto.foto,
-            stock: data.producto.stock
+        createdAt: data.createdAt,
+        producto_id: data.producto_id
       }
-      };
   
       this.carrito.push(newItem);
-  console.log(newItem)
       return newItem;
     }
   
-    async update(id, newCarritoData) {
-      const index = this.findIndex(id);
-      const oldCarrito = this.carrito[index];
+    // async update(id, newCarritoData) {
+    //   const index = this.findIndex(id);
+    //   const oldCarrito = this.carrito[index];
   
-      const updatedCarrito= { ...oldCarrito, ...newCarritoData };
-      this.carrito.splice(index, 1, updatedCarrito);
-      return updatedCarrito;
-    }
+    //   const updatedCarrito= { ...oldCarrito, ...newCarritoData };
+    //   this.carrito.splice(index, 1, updatedCarrito);
+    //   return updatedCarrito;
+    // }
   
-    async delete(id) {
-      const index = this.findIndex(id);
-      this.carrito.splice(index, 1);
-    }
+    // async delete(id) {
+    //   const index = this.findIndex(id);
+    //   this.carrito.splice(index, 1);
+    // }
   
     async query(options){
     //   type Conditions = (aProduct: ProductI) => boolean;

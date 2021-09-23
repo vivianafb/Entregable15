@@ -43,9 +43,9 @@ export class CarritoSQLDAO{
         return this.connection('carrito').insert(data);
       }
     
-      async update( id, data) {
-        return this.connection('carrito').where('id', id).update(data);
-      }
+      // async update( id, data) {
+      //   return this.connection('carrito').where('id', id).update(data);
+      // }
     
       async delete( id) {
         return this.connection('carrito').where('id', id).del();
