@@ -3,7 +3,7 @@ import { ProductoDB } from "../../../services/db"
 export class ProductosFBDAO {
 
 
-   async get(tableName,id) {
+   async get(id) {
     if(!id){
         let resultado = await ProductoDB.get();
 
@@ -29,7 +29,7 @@ export class ProductosFBDAO {
     }
 }
 
-    async add(tablename,data) {
+    async add(data) {
         try{
             const ProductoDocument = ProductoDB.doc();
             await ProductoDocument.create(data); 
@@ -41,16 +41,15 @@ export class ProductosFBDAO {
         }
     }
 
-    async update(tableName,id,data) {
-        const miDoc = ProductoDB.doc(id);    
-        console.log(miDoc);
+    async update(id,data) {
+        const miDoc = ProductoDB.doc(id);  
     
         //Chequear si existe sino no seguir.
         await ProductoDB.doc(id).update(data);
         console.log('Producto actualizado');
     }
 
-    async delete(tableName,id) {
+    async delete(id) {
         await ProductoDB.doc(id).delete()
         console.log('Producto eliminado');
     }

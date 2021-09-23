@@ -1,7 +1,7 @@
 import { FactoryDAO } from '../models/carritos/carrito.factory';
 import { TipoPersistencia } from '../models/carritos/carrito.factory';
 
-const tipo = TipoPersistencia.SQLITE3;
+const tipo = TipoPersistencia.Firebase;
 
 class carAPI {
     carrito;
