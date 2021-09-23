@@ -84,7 +84,7 @@ class Carrito{
     
     async deleteCarrito(req, res){
         const id = req.params.id;
-       
+        
             await carritoAPI.deleteCarrito(id);
             res.json({
             msg: 'carrito borrado',

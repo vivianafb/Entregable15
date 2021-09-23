@@ -1,8 +1,7 @@
 import { FactoryDAO } from '../models/carritos/carrito.factory';
 import { TipoPersistencia } from '../models/carritos/carrito.factory';
 
-const tipo = TipoPersistencia.LocalMongo;
-const tableName = 'carrito';
+const tipo = TipoPersistencia.Firebase;
 
 class carAPI {
     carrito;

@@ -1,7 +1,7 @@
 import { CarritoDB } from "../../../services/db"
 
 export class CarritoFBDAO{
-    async get(tableName,id) {
+    async get(id) {
         if(!id){
             let resultado = await CarritoDB.get();
     
@@ -27,11 +27,11 @@ export class CarritoFBDAO{
         }
     }
     
-        async add(tablename,data) {
+        async add(data) {
             try{
                 const CarritoDocument = CarritoDB.doc();
                 await CarritoDocument.create(data); 
-                console.log("Producto agregado!");        
+                console.log("Carrito agregado!");        
             }
             catch(err){
                 console.log("ERROR");
@@ -39,17 +39,17 @@ export class CarritoFBDAO{
             }
         }
     
-        async update(tableName,id,data) {
-            const miDoc = CarritoDB.doc(id);    
-            console.log(miDoc);
+        // async update(id,data) {
+        //     const miDoc = CarritoDB.doc(id);    
+        //     console.log(miDoc);
         
-            //Chequear si existe sino no seguir.
-            await CarritoDB.doc(id).update(data);
-            console.log('Producto actualizado');
-        }
+        //     //Chequear si existe sino no seguir.
+        //     await CarritoDB.doc(id).update(data);
+        //     console.log('Producto actualizado');
+        // }
     
-        async delete(tableName,id) {
+        async delete(id) {
             await CarritoDB.doc(id).delete()
-            console.log('Producto eliminado');
+            console.log('Carrito eliminado');
         }
 }
