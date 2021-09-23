@@ -7,18 +7,14 @@ export class CarritoFSDAO{
   constructor(fileName) {
     const mockData = [
       {
-        id:1, 
-        timestamp:Date.now(),
-        producto:{
-            id:1, 
-            nombre:"lapiz", 
-            precio:100, 
-            descripcion:'color rojo',
-            codigo:123456,
-            foto:'https://img.freepik.com/vector-gratis/diseno-lapiz-escribiendo_1095-187.jpg?size=338&ext=jpg',
-            stock:27,
-            timestamp:Date.now()
-        }
+        id: 1,
+        createdAt: 1632412309156,
+        producto_id:1
+      },
+      {
+        id: 2,
+        createdAt: 1632412309156,
+        producto_id: 2
       }
     ];
     this.nombreArchivo = fileName;
@@ -64,16 +60,8 @@ export class CarritoFSDAO{
     await this.leer(this.nombreArchivo);
     const newItem = {
       id: (this.carrito.length + 1),
-      timestamp: data.timestamp,
-      producto: {
-        id:(this.carrito.length + 1),
-        nombre: data.producto.nombre,
-        precio: data.producto.precio,
-        descripcion: data.producto.descripcion,
-        codigo: data.producto.codigo,
-        foto: data.producto.foto,
-        stock: data.producto.stock
-      }
+      createdAt: data.createdAt,
+      producto_id:data.id 
     };
     
 
