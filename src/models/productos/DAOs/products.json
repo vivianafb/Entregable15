@@ -1,5 +1,11 @@
 [
 	{
-		"id": 1
+		"id": 1,
+		"nombre": "vivi",
+		"precio": 1212,
+		"descripcion": "1212",
+		"codigo": 1212,
+		"foto": "112121",
+		"stock": 112
 	}
 ]

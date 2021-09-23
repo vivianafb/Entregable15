@@ -86,3 +86,4 @@
       return this.productos.filter((aProduct) => query.every((x) => x(aProduct)));
     }
   }
+

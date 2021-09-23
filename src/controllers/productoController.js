@@ -1,4 +1,4 @@
- import {productoPersistencia} from '../persistencia/productos';
+
  import { productsAPI } from '../apis/productos';
 let productos =[
     {id:1, 

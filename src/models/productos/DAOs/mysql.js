@@ -31,10 +31,10 @@ export class ProductosSQLDAO   {
     });
   }
   
-  async get(tableName, id) {
-    if (id) return this.connection(tableName).where('id', id);
+  async get(id) {
+    if (id) return this.connection('productos').where('id', id);
 
-    return this.connection(tableName);
+    return this.connection('productos');
   }
 
   async add(tableName, data) {
@@ -49,3 +49,4 @@ export class ProductosSQLDAO   {
     return this.connection(tableName).where('id', id).del();
   }
 }
+

@@ -1,5 +1,4 @@
-import {Request,Response,NextFunction} from 'express';
-import { carritoPersistencia } from '../persistencia/carrito';
+import {carritoAPI} from '../apis/carrito'
 let carrito =[
     {
         id:1, 
@@ -30,59 +29,67 @@ let carrito =[
         }
     },
 ]
-
+const tableName ='carrito'
 class Carrito{
+    
 
-    validacion(req, res, next){
-        const {timestamp,producto} = req.body;
-        if(!timestamp || !producto )
+    async validacion(req, res, next){
+        const {createdAt,producto_id} = req.body;
+        if(!createdAt || !producto_id )
             return res.status(400).json({
                 msg: "Campos del body invalidos"
             })
         next();
 
     }
-    getCarrito(req, res){
+
+    async checkCarritoExists(req, res , next) {
         const id = req.params.id;
-        if(id){
-            const producto = carritoPersistencia.get(Number(id));
-            console.log(carrito);
-            if(!carrito)
+        const carrito = await carritoAPI.getCarrito(tableName,id);
+    
+        if (!carrito) {
+          return res.status(404).json({
+            msg: 'carrito not found',
+          });
+        }
+        next();
+      }
+      
+      async getCarrito(req, res){
+        const id = req.params.id;
+        if (id) {
+            const result = await carritoAPI.getCarrito(id);
+            console.log(result)
+            if (!result)
                 return res.status(404).json({
-                    msg: "Carrito no encontrado"
-                })
-                return res.json({
-                    data:producto
-                })
+                data: 'Objeto no encontrado',
+                });
+
+            return res.json({
+                data: result
+            });
         }
         res.json({
-            data: carritoPersistencia.get()
-        })
+            data: await carritoAPI.getCarrito(),
+            });
     }
-    addCarrito(req, res){      
-        const newItem = carritoPersistencia.add(req.body)
+
+    async addCarrito(req, res){      
+        const newItem = await carritoAPI.addCarrito(req.body)
         res.json({
             msg: "Carrito agregado con exito",
             data: newItem
         })
     }
     
-     deleteCarrito(req, res){
-        const id = Number(req.params.id);
+    async deleteCarrito(req, res){
+        const id = req.params.id;
+       
+            await carritoAPI.deleteCarrito(id);
+            res.json({
+            msg: 'carrito borrado',
+            });
         
-        const producto = carritoPersistencia.get(id)
-        if(!producto){
-            return res.status(400).json({
-                msg: "Carrito no encontrado"
-            })
-        }
-
-        carrito = carritoPersistencia.delete(id) ;
-
-        res.json({
-            msg: "Carrito eliminado",
-            data: carrito
-        })
     }
 }
 export const carritoController = new Carrito();

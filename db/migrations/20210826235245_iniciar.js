@@ -10,10 +10,20 @@ exports.up = function (knex) {
         productosTable.integer('stock').notNullable();
         productosTable.timestamp('createdAt').defaultTo(knex.fn.now());
         
-      });
-  };
+      })
+      .createTable('carrito', (carritoTable) => {  
+        carritoTable.increments();
+        carritoTable.timestamp('createdAt').defaultTo(knex.fn.now());
+        carritoTable
+        .integer('producto_id')
+        .unsigned()
+        .references('id')
+        .inTable('productos')
+      })
+};   
+      
   
   exports.down = function (knex) {
-    return knex.schema.dropTable('productos');
+    return knex.schema.dropTable('carrito').dropTable('productos');
   };
   

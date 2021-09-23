@@ -19,10 +19,21 @@ exports.seed = function (knex) {
         stock:30
       },
     ];
+
+    const initCarrito = [
+      {
+        id:1,
+        createdAt: Date.now(),
+        producto_id:1
+      }
+    ]
   
-    return knex('productos')
+    return knex('carrito')
       .del()
-      .then(() => knex('productos').insert(initProducts));
+      .then(() => knex('productos').del())
+      .then(() => knex('productos').insert(initProducts))
+      .then(() => knex('carrito').insert(initCarrito));
+
   };
   
   

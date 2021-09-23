@@ -9,8 +9,8 @@
     "build": "node_modules/.bin/tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate:db": "npx knex migrate:latest --env production",
-    "rollback:db": "npx knex migrate:rollback --env development",
-    "seed:db": "npx knex seed:run --env production"
+    "rollback:db": "npx knex migrate:rollback --env production",
+    "seed:db": "npx knex seed:run --env development"
   },
   "keywords": [],
   "author": "",

@@ -27,8 +27,7 @@ export class ProductosFSDAO {
     ];
     this.nombreArchivo = fileName;
     this.productos = mockData;
-      if(!mockData)
-       this.guardar();
+    
   }
 
   async leer(archivo) {
@@ -117,3 +116,4 @@ export class ProductosFSDAO {
     return this.productos.filter((aProduct) => query.every((x) => x(aProduct)));
   }
 }
+

@@ -7,3 +7,4 @@ admin.initializeApp({
 const db = admin.firestore();
 
 export const ProductoDB = db.collection('productos');
+export const CarritoDB = db.collection('carrito');
