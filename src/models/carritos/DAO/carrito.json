@@ -1,12 +1,12 @@
 [
 	{
 		"id": 1,
-		"timestamp": 1632412309156,
+		"createdAt": 1632412309156,
 		"producto_id":1
 	},
 	{
 		"id": 2,
-		"timestamp": 1632412309156,
+		"createdAt": 1632412309156,
 		"producto_id": 2
 	}
 ]
