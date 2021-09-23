@@ -26,9 +26,9 @@ export class ProductosFSDAO {
         timestamp:Date.now()}
     ];
     this.nombreArchivo = fileName;
-     this.productos = mockData;
-     if(!mockData)
-      this.guardar();
+    this.productos = mockData;
+      if(!mockData)
+       this.guardar();
   }
 
   async leer(archivo) {
@@ -44,13 +44,13 @@ export class ProductosFSDAO {
 
   async findIndex(id){
     await this.leer(this.nombreArchivo);
-    return this.productos.findIndex((aProduct) => aProduct._id == id);
+    return this.productos.findIndex((aProduct) => aProduct.id == id);
   }
 
   async find(id) {
     await this.leer(this.nombreArchivo);
 
-    return this.productos.find((aProduct) => aProduct._id === id);
+    return this.productos.find((aProduct) => aProduct.id === id);
   }
 
   async get(id){
@@ -63,20 +63,21 @@ export class ProductosFSDAO {
   }
 
   async add(data) {
-    if (!data.nombre || !data.precio) throw new Error('invalid data');
 
     await this.leer(this.nombreArchivo);
 
     const newItem = {
-      _id: (this.productos.length + 1).toString(),
+      id: (this.productos.length + 1),
       nombre: data.nombre,
       precio: data.precio,
+      descripcion: data.descripcion,
+      codigo: data.codigo,
+      foto: data.foto,
+      stock: data.stock
     };
 
     this.productos.push(newItem);
-
     await this.guardar();
-
     return newItem;
   }
 

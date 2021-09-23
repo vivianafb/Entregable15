@@ -7,6 +7,7 @@ export class ProductosSQLDAO   {
     console.log(`SETTING ${environment} DB`);
     const options = dbConfig[environment];
     this.connection = knex(options);
+
   }
 
   init() { 
@@ -29,6 +30,7 @@ export class ProductosSQLDAO   {
       );
     });
   }
+  
   async get(tableName, id) {
     if (id) return this.connection(tableName).where('id', id);
 

@@ -51,13 +51,13 @@ class Producto{
         const { nombre, precio } = req.query;
         if (id) {
         const result = await productsAPI.getProducts(id);
-        if (!result.length)
+        if (!result)
             return res.status(404).json({
-            data: 'objeto no encontrado',
+            data: 'Objeto no encontrado',
             });
 
         return res.json({
-            data: result,
+            data: result
         });
         }
         const query = {};
@@ -84,10 +84,10 @@ class Producto{
         })
     }
     async updateProducto(req, res){
-        const id = Number(req.params.id);
+        const id = req.params.id;
 
         const newUpdate = await productsAPI.updateProduct(id,req.body);
-
+        console.log(newUpdate)
         res.json({
             msg: "Actualizando los productos",
             data: newUpdate
@@ -107,8 +107,7 @@ class Producto{
         productos = await productsAPI.deleteProduct(id) ;
 
         res.json({
-            msg: "Producto eliminado",
-            data: productos
+            msg: "Producto eliminado"
         })
     }
 }

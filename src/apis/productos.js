@@ -1,7 +1,7 @@
 import { NoticiasFactoryDAO } from '../models/productos/products.factory';
 import { TipoPersistencia } from '../models/productos/products.factory';
 
-const tipo = TipoPersistencia.SQLITE3;
+const tipo = TipoPersistencia.Firebase;
 const tableName = 'productos';
 
 class prodAPI {
@@ -12,23 +12,23 @@ class prodAPI {
   }
 
   async getProducts(id) {
-    if (id) return this.productos.get(tableName,id);
+    if (id) return this.productos.get(id);
 
-    return this.productos.get(tableName);
+    return this.productos.get();
   }
 
   async addProduct(productData) {
-    const newProduct = await this.productos.add(tableName,productData);
+    const newProduct = await this.productos.add(productData);
     return newProduct;
   }
 
   async updateProduct(id, productData) {
-    const updatedProduct = await this.productos.update(tableName,id, productData);
+    const updatedProduct = await this.productos.update(id, productData);
     return updatedProduct;
   }
 
   async deleteProduct(id) {
-    await this.productos.delete(tableName,id);
+    await this.productos.delete(id);
   }
 
   async query(options) {

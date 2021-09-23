@@ -43,12 +43,15 @@
     }
   
     async add(data) {
-      if (!data.nombre || !data.precio) throw new Error('invalid data');
   
       const newItem = {
-        _id: (this.productos.length + 1).toString(),
+        id: (this.productos.length + 1).toString(),
         nombre: data.nombre,
         precio: data.precio,
+        descripcion: data.descripcion,
+        codigo: data.codigo,
+        foto: data.foto,
+        stock: data.stock
       };
   
       this.productos.push(newItem);
