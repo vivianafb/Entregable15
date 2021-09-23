@@ -1,8 +1,7 @@
 import { NoticiasFactoryDAO } from '../models/productos/products.factory';
 import { TipoPersistencia } from '../models/productos/products.factory';
 
-const tipo = TipoPersistencia.Firebase;
-const tableName = 'productos';
+const tipo = TipoPersistencia.SQLITE3;
 
 class prodAPI {
     productos;

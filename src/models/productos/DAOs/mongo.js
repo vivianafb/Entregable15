@@ -38,7 +38,6 @@ export class ProductosAtlasDAO  {
   }
 
   async add(data) {
-    if (!data.nombre || !data.precio) throw new Error('invalid data');
 
     const newProduct = new this.productos(data);
     await newProduct.save();
