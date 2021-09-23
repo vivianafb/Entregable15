@@ -2,29 +2,11 @@
 	{
 		"id": 1,
 		"timestamp": 1632412309156,
-		"producto": {
-			"id": 1,
-			"nombre": "lapiz",
-			"precio": 100,
-			"descripcion": "color rojo",
-			"codigo": 123456,
-			"foto": "https://img.freepik.com/vector-gratis/diseno-lapiz-escribiendo_1095-187.jpg?size=338&ext=jpg",
-			"stock": 27,
-			"timestamp": 1632412309156
-		}
+		"producto_id":1
 	},
 	{
 		"id": 2,
 		"timestamp": 1632412309156,
-		"producto": {
-			"id": 2,
-			"nombre": "botella",
-			"precio": 123,
-			"descripcion": "agua",
-			"codigo": 123456,
-			"foto": "https://img.freepik.com/vector-gratis/diseno-lapiz-escribiendo_1095-187.jpg?size=338&ext=jpg",
-			"stock": 227,
-			"timestamp": 1632212412309156
-		}
+		"producto_id": 2
 	}
 ]
